@@ -13,3 +13,17 @@ async function getClasses() {
 }
 
 export {getClasses}
+
+async function getStudents(com.bjs.bjsapi.database.model.Class schoolClass) {
+    return fetch(`${api_url}/students/search/findAllBySchoolClass?schoolClass` , {
+        credentials: "include"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            return data._embedded.students;
+        })
+}
+
+export {getStudents}
