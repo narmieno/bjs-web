@@ -1,6 +1,6 @@
 const api_url = "http://raspberry-balena.gtdbqv7ic1ie9w3s.myfritz.net:8080/api/v1";
 
-async function getClasses() {
+export async function getClasses() {
     return fetch(`${api_url}/classes`, {
         credentials: "include"
     })
@@ -12,10 +12,8 @@ async function getClasses() {
         })
 }
 
-export {getClasses}
-
-async function getStudents(com.bjs.bjsapi.database.model.Class schoolClass) {
-    return fetch(`${api_url}/students/search/findAllBySchoolClass?schoolClass` , {
+export async function getStudents(schoolClass) {
+    return fetch(`${api_url}/students/search/findAllBySchoolClass?schoolClass=${schoolClass}` , {
         credentials: "include"
     })
         .then(response => {
@@ -25,5 +23,3 @@ async function getStudents(com.bjs.bjsapi.database.model.Class schoolClass) {
             return data._embedded.students;
         })
 }
-
-export {getStudents}
