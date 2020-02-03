@@ -1,4 +1,4 @@
-import {getClass, getStudents, postSportResult, deleteStudent, addStudent, patchStudent} from "./api.js";
+import {getClass, getStudents, postSportResult, deleteStudent, addStudent, patchStudent, getScore} from "./api.js";
 var modalDeletion = $('#deletionModal').modal({
     keyboard: true,
     show: false
@@ -25,6 +25,10 @@ function constructStudentTableRow(student) {
     let birthday = document.createElement("td");
     birthday.innerText = student.birthDay;
     row.appendChild(birthday);
+
+    let score = document.createElement("td");
+    score.innerText = getStudentsScore(studentURL);
+    row.appendChild(score);
 
     let gender = document.createElement("td");
     if(student.female === true){
@@ -122,6 +126,10 @@ function editStudent(){
             errorElement.innerHTML = "The patch request was not successful.";
             $(errorElement).slideDown().delay(3000).slideUp();
         })
+}
+
+function getStudentsScore(studentURL){
+   return getScore(studentURL).toString();
 }
 
 $(window).on("load", function () {
